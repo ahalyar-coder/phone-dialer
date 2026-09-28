@@ -1,5 +1,14 @@
 ﻿Console.WriteLine("Pocket Dialer");
 
+void DialNumber(string number)
+{
+	if (number.Length != 10 || number.Any(digit => digit < '0' || digit > '9'))
+	{
+		throw new ArgumentException("The phone number must contain exactly 10 digits.");
+	}
+	Console.WriteLine($"Dialling {number}...");
+}
+
 while (true)
 {
 	Console.WriteLine("\nHome");
@@ -25,12 +34,7 @@ while (true)
 				{
 					return;
 				}
-                
-				if (number.Length != 10 || number.Any(digit => digit < '0' || digit > '9'))
-                {
-                    throw new ArgumentException("The phone number must contain exactly 10 digits.");
-                }
-	            Console.WriteLine($"Dialling {number}...");
+				DialNumber(number);
 				break;
 			case "2":
 				throw new NotSupportedException("Dialled number history is not supported yet.");
